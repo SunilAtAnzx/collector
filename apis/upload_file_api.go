@@ -37,7 +37,7 @@ func UploadFile(response http.ResponseWriter, request *http.Request) {
 	fmt.Println("File Name:", handler.Filename)
 	fmt.Println("File Size:", handler.Size)
 
-	n := fmt.Sprintf("coverageReport-%d.txt", time.Now().UTC().Unix())
+	n := fmt.Sprintf("coverageReport-%d.out", time.Now().UTC().Unix())
 	dst := fmt.Sprintf("%s/%s", "coverageReports", n)
 	out, err := os.Create(dst)
 

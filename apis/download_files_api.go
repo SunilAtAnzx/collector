@@ -39,21 +39,21 @@ func DownloadFiles(response http.ResponseWriter, request *http.Request) {
 	}
 	zipWriter.Close()
 
-	archiveFile, err := os.Open("coverageReportsArchive.zip") //Open the file to be downloaded later
-	defer archiveFile.Close()                                 //Close after function return
+	archiveFile, err := os.Open("coverageReportsArchive.zip")
+	defer archiveFile.Close()
 
 	if err != nil {
-		http.Error(response, "File not found.", 404) //return 404 if file is not found
+		http.Error(response, "File not found.", 404)
 		return
 	}
 
-	tempBuffer := make([]byte, 512)                       //Create a byte array to read the file later
-	archiveFile.Read(tempBuffer)                          //Read the file into  byte
-	FileContentType := http.DetectContentType(tempBuffer) //Get file header
+	tempBuffer := make([]byte, 512)
+	archiveFile.Read(tempBuffer)
+	FileContentType := http.DetectContentType(tempBuffer)
 
 	fmt.Println("File content")
-	FileStat, _ := archiveFile.Stat()                  //Get info from file
-	FileSize := strconv.FormatInt(FileStat.Size(), 10) //Get file size as a string
+	FileStat, _ := archiveFile.Stat()
+	FileSize := strconv.FormatInt(FileStat.Size(), 10)
 
 	Filename := "coverageReportsArchive"
 
@@ -61,7 +61,7 @@ func DownloadFiles(response http.ResponseWriter, request *http.Request) {
 	response.Header().Set("Content-Type", FileContentType+";"+Filename)
 	response.Header().Set("Content-Length", FileSize)
 
-	archiveFile.Seek(0, 0) //We read 512 bytes from the file already so we reset the offset back to 0
+	archiveFile.Seek(0, 0)
 	io.Copy(response, archiveFile)
 }
 
