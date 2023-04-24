@@ -4,4 +4,6 @@ test:
 server:
 	go run main.go
 
-.PHONY: test server
+docker-image:
+	docker build -t go-collector-img .
+.PHONY: test server docker-image
