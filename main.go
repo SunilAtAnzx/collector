@@ -11,7 +11,7 @@ import (
 func main() {
 
 	var port int
-	flag.IntVar(&port, "p", 8080, "Provide a port number")
+	flag.IntVar(&port, "p", 8282, "Provide a port number")
 	flag.Parse()
 
 	router := mux.NewRouter()
