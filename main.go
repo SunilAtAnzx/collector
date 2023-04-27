@@ -19,11 +19,12 @@ func main() {
 	router.HandleFunc("/api/upload", apis.UploadFile).Methods("POST")
 	router.HandleFunc("/api/download", apis.DownloadFiles).Methods("GET")
 
+	fmt.Println("Server started in port :", port)
+
 	err := http.ListenAndServe(fmt.Sprint(":", port), router)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-
 }
