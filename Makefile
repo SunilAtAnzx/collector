@@ -8,7 +8,7 @@ server:
 	go run main.go -p 8282
 
 docker-image:
-	docker build -t go-collector-img .
+	docker build -t collector-app-img .
 
 build: bin/$(BINARY_NAME)
 
