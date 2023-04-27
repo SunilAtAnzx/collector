@@ -13,7 +13,6 @@ COPY --from=certificates /external/DigiCert_Global_Root_CA.crt /usr/local/share/
 RUN /usr/sbin/update-ca-certificates
 
 RUN mkdir /app
-COPY . /app
+COPY ./bin/linux_collector /app/collector
 WORKDIR /app
-RUN go build -o main . 
-CMD ["/app/main"]
+CMD ["/app/collector"]
