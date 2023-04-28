@@ -14,6 +14,6 @@ RUN /usr/sbin/update-ca-certificates
 
 RUN mkdir /app
 COPY ./bin/linux_collector /app/collector
-COPY coverageReports /app
 WORKDIR /app
+RUN mkdir coverageReports
 CMD ["/app/collector"]
